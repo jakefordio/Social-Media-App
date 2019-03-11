@@ -30,6 +30,10 @@ namespace SocialMediaApp.API
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors(); // Cross Origin Resource Sharing, CORS  - Security measure that controls which clients(Domains) can access our api
+            //Telling our app about our AuthRepository and IAuthRepository
+            //3 options, AddSingleton(), AddTransient(), AddScoped()
+            //AddScoped() creates a single instance for each HTTP Request, and uses it scoped to that user's HTTP session.
+            services.AddScoped<IAuthRepository, AuthRepository>(); //Now available for injection in our controllers.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
