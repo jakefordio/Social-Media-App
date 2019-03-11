@@ -9,22 +9,22 @@ using SocialMediaApp.API.Data;
 namespace SocialMediaApp.API.Controllers
 {
     // http://localhost:5000/api/values
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
+    [Route("api/[controller]")] //ApiController attribute requires attribute routing instead of conventional routing
+    [ApiController] //new to core 2.1, automatically validates request.
+    //ControllerBase, rather than Controller, takes out support for Views, since in our App, Angular handles our views.
+    public class ValuesController : ControllerBase //ControllerBase gives access to HTTP reponses and actions, no views.
     {
-        private readonly DataContext context;
+        private readonly DataContext dbContext;
 
         public ValuesController(DataContext context)
         {
-            this.context = context;
-
+            this.dbContext = context;
         }
         // GET api/values
         // [HttpGet] OLD SYNCHRONOUS METHOD
         // public IActionResult GetValues() //IActionResult allows you to return HTTP Responses to the client
         // {
-        //     var values = context.Values.ToList(); //This gives values to EF (Entity Framework) methods, as well as DB Sets (Values)
+        //     var values = dbContext.Values.ToList(); //This gives values to EF (Entity Framework) methods, as well as DB Sets (Values)
         //     return Ok(values);
         // }
 
@@ -32,7 +32,7 @@ namespace SocialMediaApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetValues() //IActionResult allows you to return HTTP Responses to the client
         {
-            var values = await context.Values.ToListAsync(); //This gives values to EF (Entity Framework) methods, as well as DB Sets (Values)
+            var values = await dbContext.Values.ToListAsync(); //This gives values to EF (Entity Framework) methods, as well as DB Sets (Values)
             return Ok(values);
         }
 
@@ -43,7 +43,7 @@ namespace SocialMediaApp.API.Controllers
             //FirstOrDefault returns null if no matching value is found, while First() just returns an exception.
             //The 1st "x" in the Lambda expression represents the value we are returning.
             //x.Id is going to match the value that is being passed in(x.Id == id)
-            var value = await context.Values.FirstOrDefaultAsync(x => x.Id == id);
+            var value = await dbContext.Values.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(value);
         }
 
