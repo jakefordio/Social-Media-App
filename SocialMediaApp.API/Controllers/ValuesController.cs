@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SocialMediaApp.API.Data;
 
 namespace SocialMediaApp.API.Controllers
 {
-    // http://localhost:5000/api/values
+    [Authorize]
     [Route("api/[controller]")] //ApiController attribute requires attribute routing instead of conventional routing
     [ApiController] //new to core 2.1, automatically validates request.
     //ControllerBase, rather than Controller, takes out support for Views, since in our App, Angular handles our views.
@@ -37,6 +38,7 @@ namespace SocialMediaApp.API.Controllers
         }
 
         // GET api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
