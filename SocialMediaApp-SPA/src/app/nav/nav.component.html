@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark"> <!-- fixed-top -->
+  <a class="navbar-brand" href="#">Social Media App</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Recommended Friends</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Lists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Messages</a>
+      </li>
+    </ul>
+    <!-- With an Angular Form, we get:
+      Change tracking: tracking the changes users make to input fields.
+      2 Way binding: Send user input to our component, and send from component back to our form.
+      Validation and Error Handling as well.
+      2 Parts to an Angular form: 1. Template (Html), 2. The component (nav.component.ts)
+      We pass field data as objects
+    -->
+    <!--
+      2 types of angular forms: template form, and reactive form (More complex)
+      #loginForm is a template reference variable, the "#" tells angular that we are using a template form
+      ngFrom is a directive, we assign to login 
+    -->
+    <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()"> <!-- (ngSubmit) is an event, pass in our method from component-->
+      <!-- Start typing: "a-ng" to get all of the available snippets for angular HTML attributes
+           for ngModel, two way binding, we need to set it to the binding from our component,
+           EX: [(ngModel)]="model.username" or [(ngModel)]="model.password"
+           for name attribute, angular uses it to assign to form controls so it can register them.
+      -->
+      <input class="form-control mr-sm-2" type="text" name="username" #username="ngModel"
+        placeholder="Username" required [(ngModel)]="model.username">
+      <input class="form-control mr-sm-2" type="password" name="password" #password="ngModel"
+        placeholder="Password" required [(ngModel)]="model.password">
+      <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">LOGIN</button>
+    </form>
+
+</nav>
+
+<pre>
+  Form Valid: {{loginForm.valid}}
+  Form Touched: {{loginForm.touched}}
+  Form Dirty: {{loginForm.dirty}}
+  Form Values: {{loginForm.value | json}}
+  Username Valid: {{username.valid}}
+  Username Touched: {{username.touched}}
+  Username Dirty: {{username.dirty}}
+  Username Value: {{username.value}}
+  Password Valid: {{password.valid}}
+  Password Touched: {{password.touched}}
+  Password Dirty: {{password.dirty}}
+  Password Value: {{password.value}}
+</pre>

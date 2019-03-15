@@ -43,7 +43,7 @@ namespace SocialMediaApp.API
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true, //telling application server to use signing key
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes( //pass in an instance of our key from appsettings.json
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes( //pass in an instance of our key from appsettings.json
                             Configuration.GetSection("AppSettings:Token").Value)), 
                         ValidateIssuer = false, //localhost, no need to validate in this method.
                         ValidateAudience = false //localhost, no need to validate in this method.
