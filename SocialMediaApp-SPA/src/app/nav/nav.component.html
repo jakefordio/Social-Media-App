@@ -10,7 +10,22 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Messages</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+
     </ul>
+
+    <div *ngIf="loggedIn()" class="dropdown">
+      <a class="dropdown-toggle text-light">
+        Welcome user!
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Logout</a>
+      </div>
+    </div>
     <!-- With an Angular Form, we get:
       Change tracking: tracking the changes users make to input fields.
       2 Way binding: Send user input to our component, and send from component back to our form.
@@ -21,9 +36,9 @@
     <!--
       2 types of angular forms: template form, and reactive form (More complex)
       #loginForm is a template reference variable, the "#" tells angular that we are using a template form
-      ngFrom is a directive, we assign to login 
+      ngFrom is a directive, we assign to login
     -->
-    <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()"> <!-- (ngSubmit) is an event, pass in our method from component-->
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()"> <!-- (ngSubmit) is an event, pass in our method from component-->
       <!-- Start typing: "a-ng" to get all of the available snippets for angular HTML attributes
            for ngModel, two way binding, we need to set it to the binding from our component,
            EX: [(ngModel)]="model.username" or [(ngModel)]="model.password"
