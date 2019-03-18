@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms'; // VS Code has no shortcuts for im
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { NavComponent } from './nav/nav.component';
+import { AuthService } from './_services/auth.service';
 
 @NgModule({
    declarations: [
@@ -18,7 +19,9 @@ import { NavComponent } from './nav/nav.component';
       HttpClientModule,
       FormsModule
    ],
-   providers: [],
+   providers: [ // service providers
+     AuthService // Now we can inject this service into our component.
+   ],
    bootstrap: [
       AppComponent
    ]
