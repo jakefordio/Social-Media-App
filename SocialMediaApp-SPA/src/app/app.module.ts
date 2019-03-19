@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // VS Code has no shortcuts for importing angular classes, so must be done manually -_-
 
 import { AppComponent } from './app.component';
-import { ValueComponent } from './value/value.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
@@ -13,7 +12,6 @@ import { RegisterComponent } from './register/register.component';
 @NgModule({
    declarations: [
       AppComponent,
-      ValueComponent,
       NavComponent, // Right-clicking app>generate component has added this to our declarations/imports automagically.
       HomeComponent,
       RegisterComponent
