@@ -7,20 +7,24 @@ import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/auth.service';
+import { HomeComponent } from './home/home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       ValueComponent,
-      NavComponent // Right-clicking src > app > generate component has added this to our declarations as well as imports automagically.
+      NavComponent, // Right-clicking app>generate component has added this to our declarations/imports automagically.
+      HomeComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule
    ],
-   providers: [ // service providers
-     AuthService // Now we can inject this service into our component.
+   providers: [ // Service Providers
+      AuthService // Now we can inject this service into our component.
    ],
    bootstrap: [
       AppComponent
