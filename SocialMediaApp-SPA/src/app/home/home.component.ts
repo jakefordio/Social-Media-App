@@ -8,23 +8,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
    registerMode = false;
-   values: any; // any, is sort of like var in javascript, no type specification needed.
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() { // After component is initialized.
-    this.getValues();
   }
 
   registerToggle() {
-    this.registerMode = !this.registerMode;
+    this.registerMode = true;
   }
 
-  getValues() { // This function needs to be called when the component loads.
-    this.http.get('http://localhost:5000/api/values').subscribe(response => {
-      this.values = response;
-    }, error => {
-        console.log(error);
-    });
+  cancelRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode;
   }
 }

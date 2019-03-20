@@ -36,4 +36,8 @@ login(model: any) {
     })
   );
 }
+
+register(model: any) { // Model will store the username and password
+  return this.http.post(this.baseURL + 'register', model); // Returns an observable, which means we have to subscribe to this method
+}
 }

@@ -11,10 +11,21 @@
   <div *ngIf="registerMode" class="container">
     <div class="row justify-content-center">
       <div class="col-4">
-        <!-- Use square brackets to pass values down to child component
+        <!--  WHATS HAPPENING BELOW?
+             Use square brackets to pass values down to child component
              This values property is used as an "input" property, and
-             needs to be added to our register component. -->
-        <app-register [valuesFromHome]="values"></app-register> <!-- Child component of Home Component -->
+             needs to be added to our register component.
+            
+             Use parentheses to emit values up to a parent component
+             This cancelRegister Property is used as an "output" property,
+             and needs to be added to our register component.
+            
+             (cancelRegister) is a property coming from our register component.
+             cancelRegister calls our cancelRegisterMode() method from our home component.
+             $event is the parameter getting passed from cancelRegister, in this case, it is false
+             because that is what our cancel() method from register component returns.
+            -->
+        <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
       </div>
     </div>
   </div>
